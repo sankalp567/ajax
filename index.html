@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="1px">
+        <tr>
+            <th>action</th>
+            <th>ID</th>
+            <th>start date</th>
+            <th>end date</th>
+            <th>month,year</th>
+            <th>excluded date</th>
+            <th>number of Days</th>
+            <th>lead count</th>
+            <th>expected DRR</th>
+            <th>last update</th>
+        </tr>
+        <tr colspan="2">
+            <form action="" id='myForm'>
+                <td id="action">N/A</td>
+                <td id="ID">N/A</td>
+                <td><input type="date" id="start_date"></td>
+                <td><input type="date"id="end_date"></td>
+                <td  id="month_year"></td>
+                <td><input type="date" id="excluded_date"></td>
+                <td id="number_day"></td>
+                <td><input id="lead_count" type="number"></td>
+                <td><input id="expected_drr" type="number"></td>
+                <td><button type="button" onclick="aaa()">save</button> <br>
+                    <button type="reset">cancel</button>
+                </td>
+            </form>
+        </tr>
+        <tbody id="mytable"></tbody>
+    </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+
+        function aaa(){
+            var a= document.getElementById("action").value;
+            var b= document.getElementById("ID").value;
+            var c= document.getElementById("start_date").value;
+            var d= document.getElementById("end_date").value;
+            // var e= document.getElementById("month_year").value;
+            var e= new Date(document.getElementById("start_date").value).getMonth() +1;
+            var f= document.getElementById("excluded_date").value;
+            // var g= document.getElementById("number_day").value;
+            const date1 = new Date(document.getElementById("start_date").value);
+            const date2 = new Date(document.getElementById("end_date").value); 
+
+            // Calculate the time difference in milliseconds
+            const timeDifference = date2 - date1;
+
+            // Convert the time difference to days
+            const daysDifference = timeDifference / (1000 * 60 * 60 * 24);
+            // console.log(daysDifference);
+            var g= daysDifference;
+            var h= document.getElementById("lead_count").value;
+            // var i= document.getElementById("expected_drr").value;
+            var i = g/h;
+            var j = new Date().toLocaleString();
+
+            var table = document.getElementById("mytable");
+            var  row = `<tr>
+                    <td>${a}</td>
+                    <td>${b}</td>
+                    <td>${c}</td>
+                    <td>${d}</td>
+                    <td>${e}</td>
+                    <td>${f}</td>
+                    <td>${g}</td>
+                    <td>${h}</td>
+                    <td>${i}</td>
+                    <td>${j}</td>
+                    </tr>`;
+
+            table.innerHTML +=row;
+
+            $('#myForm')[0].reset();
+
+        }
+
+    </script>
+</body>
+
+</html>
